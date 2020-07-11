@@ -4,6 +4,7 @@ import java.util.List;
 
 import edu.patronesdiseno.srp.models.interfaces.IDiscount;
 import edu.patronesdiseno.srp.models.interfaces.IOrderItem;
+import edu.patronesdiseno.srp.models.interfaces.ITax;
 
 public class Order {
 
@@ -13,6 +14,7 @@ public class Order {
     private String courier;
     private Double discount;
     private String customer;
+    private Double tax;
     
     private List<IOrderItem> orderItems;
 
@@ -36,10 +38,11 @@ public class Order {
         this.amount = amount;
     }
 
-    public Double calculateTotalOrder(IDiscount iDiscount) {
+    public Double calculateTotalOrder(IDiscount iDiscount, ITax iTax) {
         final List<IOrderItem> ordersItems = this.getOrderItems();
 
         Double totalPrice = 0.0;
+
 
         for (final IOrderItem item : ordersItems) {
             totalPrice += item.getPrice();
@@ -48,9 +51,10 @@ public class Order {
         if (iDiscount != null)   {
             this.discount = iDiscount.getDiscount();
             this.amount = totalPrice - this.discount;
-        }
-        else{
+            this.tax = totalPrice*iTax.getTax();
+        }else{
             this.discount = 0.0;
+            this.tax = 0.0;
             this.amount = totalPrice;
         }
 
@@ -93,5 +97,15 @@ public class Order {
     public Double getDiscount() {
         return discount;
     }
+
+    public Double getTax() {
+        return tax;
+    }
+
+    public void setTax(Double tax) {
+        this.tax = tax;
+    }
+
+    
 
 }

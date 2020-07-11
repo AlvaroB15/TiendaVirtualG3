@@ -4,14 +4,14 @@ import edu.patronesdiseno.srp.config.Paths;
 import edu.patronesdiseno.srp.controllers.OrderController;
 import edu.patronesdiseno.srp.models.Delivery;
 import edu.patronesdiseno.srp.models.Order;
-import edu.patronesdiseno.srp.models.Product;
 import edu.patronesdiseno.srp.models.impl.OrderItemInternet;
 import edu.patronesdiseno.srp.models.interfaces.IDiscount;
 import edu.patronesdiseno.srp.models.interfaces.IOrderItem;
+import edu.patronesdiseno.srp.models.interfaces.ITax;
 import edu.patronesdiseno.srp.models.patterns.CouponDiscountFactory;
-import edu.patronesdiseno.srp.models.patterns.DiscountFactory;
 import edu.patronesdiseno.srp.models.patterns.HomeDeliveryBuilder;
 import edu.patronesdiseno.srp.models.patterns.IDiscountFactory;
+import edu.patronesdiseno.srp.models.patterns.TaxFactory;
 import edu.patronesdiseno.srp.repositories.OrderRepository;
 import edu.patronesdiseno.srp.utils.OrderCourierDispatcher;
 
@@ -59,7 +59,9 @@ public class OrderControllerImpl implements OrderController {
         IDiscountFactory factoryDiscount = new CouponDiscountFactory();
         IDiscount discount = factoryDiscount.createDiscount();
 
-        order.calculateTotalOrder(discount);
+        ITax tax =  TaxFactory.getTax("internet");
+
+        order.calculateTotalOrder(discount, tax);
         orderRepository.create(order);
         context.status(HttpStatus.CREATED_201)
                 .header(HttpHeader.LOCATION.name(), Paths.formatPostLocation(order.getId().toString()));
