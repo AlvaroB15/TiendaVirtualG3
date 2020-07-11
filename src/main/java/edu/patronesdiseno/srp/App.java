@@ -41,20 +41,20 @@ public class App {
 
         //probando el problema 4
     
-        /*FactoryAddrees Fabrica = new FactoryAddrees();
+        // FactoryAddrees Fabrica = new FactoryAddrees();
         
-        IAddress Iaddr = Fabrica.getaddress("Home");
-        Iaddr.send();
-        Iaddr.received();
+        // IAddress Iaddr = Fabrica.getaddress("Home");
+        // Iaddr.send();
+        // Iaddr.received();
 
-        IAddress Iaddr2 = Fabrica.getaddress("Job");
-        Iaddr2.send();
-        Iaddr2.received();
+        // IAddress Iaddr2 = Fabrica.getaddress("Job");
+        // Iaddr2.send();
+        // Iaddr2.received();
 
-        IAddress Iaddr3 = Fabrica.getaddress("Empty");
-        Iaddr3.send();
-        Iaddr3.received();
-        */
+        // IAddress Iaddr3 = Fabrica.getaddress("Empty");
+        // Iaddr3.send();
+        // Iaddr3.received();
+        
 
         //fin del problema 4
 
@@ -71,6 +71,7 @@ public class App {
         Javalin server = Javalin.create(
             config -> {
                 config.registerPlugin(new OpenApiPlugin(openApi));
+                config.enableCorsForAllOrigins();
             }
         ).start(7000);
 
