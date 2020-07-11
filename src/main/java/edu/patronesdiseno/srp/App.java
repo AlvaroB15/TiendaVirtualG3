@@ -10,6 +10,10 @@ import edu.patronesdiseno.srp.config.DBConnectionManager;
 import edu.patronesdiseno.srp.controllers.impl.CustomerControllerImpl;
 import edu.patronesdiseno.srp.controllers.impl.OrderControllerImpl;
 import edu.patronesdiseno.srp.controllers.impl.ProductControllerImpl;
+import edu.patronesdiseno.srp.models.impl.FactoryAddrees;
+import edu.patronesdiseno.srp.models.impl.FactoryAddrees;
+import edu.patronesdiseno.srp.models.interfaces.IAddress;
+import edu.patronesdiseno.srp.models.interfaces.Iaddress;
 import edu.patronesdiseno.srp.repositories.impl.CustomerRepositoryImpl;
 import edu.patronesdiseno.srp.repositories.impl.OrderRepositoryImpl;
 import edu.patronesdiseno.srp.repositories.impl.ProductRepositoryImpl;
@@ -35,7 +39,35 @@ public class App {
     }
 
     public static void main(String[] args) {
+        
         new App().startup();
+
+        //probando el problema 4
+    
+        /*FactoryAddrees Fabrica = new FactoryAddrees();
+        
+        IAddress Iaddr = Fabrica.getaddress("Home");
+        Iaddr.send();
+        Iaddr.received();
+
+        IAddress Iaddr2 = Fabrica.getaddress("Job");
+        Iaddr2.send();
+        Iaddr2.received();
+
+        IAddress Iaddr3 = Fabrica.getaddress("Empty");
+        Iaddr3.send();
+        Iaddr3.received();
+        */
+
+        //fin del problema 4
+
+
+
+
+
+
+
+
     }
 
     public void startup() {

@@ -1,10 +1,12 @@
 package edu.patronesdiseno.srp.models;
 
+import edu.patronesdiseno.srp.models.impl.FactoryAddress;
+
 public class Customer {
     private String id;
     private String name;
     private String address;
-
+    //private FactoryAddress factoryAddress = new FactoryAddress();
     public String getId() {
         return id;
     }
@@ -25,8 +27,7 @@ public class Customer {
         return address;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setAddress(String addressType) {
+        this.address = new FactoryAddress().getAddress(addressType).toString();
     }
-
 }
