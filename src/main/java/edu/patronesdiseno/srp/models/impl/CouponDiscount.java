@@ -2,7 +2,7 @@ package edu.patronesdiseno.srp.models.impl;
 
 import edu.patronesdiseno.srp.models.interfaces.IDiscount;
 
-public class CouponDiscount implements IDiscount    {
+public class CouponDiscount implements IDiscount {
 
     private Double discount;
 
@@ -16,6 +16,5 @@ public class CouponDiscount implements IDiscount    {
         
         return this.discount;
     }
-
-    
+  
 }

@@ -32,6 +32,8 @@ public class CustomerControllerImpl implements CustomerController {
         //    throw new BadRequestResponse(String.format("Unable to create a new post with existing id: %s", customer));
         //}
 
+        
+
         customerRepository.create(customer);
         context.status(HttpStatus.CREATED_201)
                 .header(HttpHeader.LOCATION.name(), Paths.formatPostLocation(customer.getId().toString()));
